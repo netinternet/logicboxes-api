@@ -178,6 +178,18 @@ logicboxes()->customer()->get(17939294)
 logicboxes()->customer()->get('app@yourdomain.com','myNew8CharPassword')
 ```
 
+## Test Configuration
+- You should first open the LogicBox test account [LogicBox Demo Account Link](http://cp.onlyfordemo.net/servlet/ResellerSignupServlet?&validatenow=false)
+- Copy example config file: 
+    ```sh
+    cp tests/config.ini.example tests/config.ini
+    ```
+- Change credentials in tests/config.ini file.
+- Run phpunit:
+    ```sh
+      $ vendor/phpunit/phpunit/phpunit 
+    ```
+
 ## Contributing
 
 1. Fork it ( https://github.com/netinternet/logicboxes-api/ )
