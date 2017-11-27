@@ -1,6 +1,10 @@
 [![Total Downloads](https://poser.pugx.org/netinternet/logicboxes/downloads)](https://packagist.org/packages/netinternet/logicboxes)
 [![Latest Stable Version](https://poser.pugx.org/netinternet/logicboxes/v/stable)](https://packagist.org/packages/netinternet/logicboxes)
 
+# Logicboxes Laravel Package
+
+Logicboxes laravel package provides most of the logicboxes api functionality and compatible companies like resellerclub.
+
 
 ### Installation
 
