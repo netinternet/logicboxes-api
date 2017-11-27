@@ -131,17 +131,7 @@ class Domain extends Base
      */
     public function enableTheftProtection()
     {
-        $resp = $this->orderId();
-
-        if (!$resp['status']) {
-            return $resp;
-        }
-
-        $orderId = $resp['response'];
-        $query = [
-            'order-id' => $orderId
-        ];
-        return $this->request('domains/enable-theft-protection.json', $query, 'POST');
+        return $this->requestWithOrderId('domains/enable-theft-protection.json', [], 'POST');
     }
 
     /**
@@ -149,17 +139,7 @@ class Domain extends Base
      */
     public function disableTheftProtection()
     {
-        $resp = $this->orderId();
-        if (!$resp['status']) {
-            return $resp;
-        }
-
-        $orderId = $resp['response'];
-        $query = [
-            'order-id' => $orderId
-        ];
-
-        return $this->request('domains/disable-theft-protection.json', $query, 'POST');
+        return $this->requestWithOrderId('domains/disable-theft-protection.json', [], 'POST');
     }
 
     /**
@@ -168,18 +148,10 @@ class Domain extends Base
      */
     public function modifyNameServers(array $ns)
     {
-        $resp = $this->orderId();
-        if (!$resp['status']) {
-            return $resp;
-        }
-
-        $orderId = $resp['response'];
-
         $query = [
-            'order-id' => $orderId,
             'ns' => $ns
         ];
-        return $this->request('domains/modify-ns.json', $query, 'POST', true);
+        return $this->requestWithOrderId('domains/modify-ns.json', $query, 'POST', true);
     }
 
     /**
@@ -187,17 +159,7 @@ class Domain extends Base
      */
     public function delete()
     {
-        $resp = $this->orderId();
-        if (!$resp['status']) {
-            return $resp;
-        }
-
-        $orderId = $resp['response'];
-        $query = [
-            'order-id' => $orderId
-        ];
-
-        return $this->request('domains/delete.json', $query, 'POST');
+        return $this->requestWithOrderId('domains/delete.json', [], 'POST');
     }
 
     /**
@@ -205,101 +167,55 @@ class Domain extends Base
      */
     public function cancelTransfer()
     {
-        $resp = $this->orderId();
-        if (!$resp['status']) {
-            return $resp;
-        }
-
-        $orderId = $resp['response'];
-        $query = [
-            'order-id' => $orderId
-        ];
-
-        return $this->request('domains/cancel-transfer.json', $query, 'POST');
+        return $this->requestWithOrderId('domains/cancel-transfer.json', [], 'POST');
     }
 
+
     /**
-     * @param $years
-     * @param $ns
-     * @param $customerId
-     * @param $regContactId
-     * @param $adminContactId
-     * @param $techContactId
-     * @param $billingContactId
-     * @param $invoiceOption
-     * @param bool $purchasePrivacy
-     * @param bool $protectPrivacy
+     * @param $query
      * @return array
      */
-    public function register(
-        $years,
-        $ns,
-        $customerId,
-        $regContactId,
-        $adminContactId,
-        $techContactId,
-        $billingContactId,
-        $invoiceOption,
-        $purchasePrivacy = false,
-        $protectPrivacy = false
-    ) {
-        $query = [
-            'domain-name' => $this->domain,
-            'years' => $years,
-            'ns' => $ns,
-            'customer-id' => $customerId,
-            'reg-contact-id' => $regContactId,
-            'admin-contact-id' => $adminContactId,
-            'tech-contact-id' => $techContactId,
-            'billing-contact-id' => $billingContactId,
-            'invoice-option' => $invoiceOption,
-            'purchase-privacy' => $purchasePrivacy,
-            'protect-privacy' => $protectPrivacy,
-        ];
+    public function register($query)
+    {
+//        $query = [
+//            'domain-name' => $this->domain,
+//            'years' => $years,
+//            'ns' => $ns,
+//            'customer-id' => $customerId,
+//            'reg-contact-id' => $regContactId,
+//            'admin-contact-id' => $adminContactId,
+//            'tech-contact-id' => $techContactId,
+//            'billing-contact-id' => $billingContactId,
+//            'invoice-option' => $invoiceOption,
+//            'purchase-privacy' => $purchasePrivacy,
+//            'protect-privacy' => $protectPrivacy,
+//        ];
+        $query['domain-name'] = $this->domain;
+
         return $this->request('domains/register.json', $query, 'POST', true);
     }
 
+
     /**
-     * @param $authCode
-     * @param $years
-     * @param $ns
-     * @param $customerId
-     * @param $regContactId
-     * @param $adminContactId
-     * @param $techContactId
-     * @param $billingContactId
-     * @param $invoiceOption
-     * @param bool $purchasePrivacy
-     * @param bool $protectPrivacy
+     * @param $query
      * @return array
      */
-    public function transfer(
-        $authCode,
-        $years,
-        $ns,
-        $customerId,
-        $regContactId,
-        $adminContactId,
-        $techContactId,
-        $billingContactId,
-        $invoiceOption,
-        $purchasePrivacy = false,
-        $protectPrivacy = false
-    ) {
-        $query = [
-            'domain-name' => $this->domain,
-            'auth-code' => $authCode,
-            'years' => $years,
-            'ns' => $ns,
-            'customer-id' => $customerId,
-            'reg-contact-id' => $regContactId,
-            'admin-contact-id' => $adminContactId,
-            'tech-contact-id' => $techContactId,
-            'billing-contact-id' => $billingContactId,
-            'invoice-option' => $invoiceOption,
-            'purchase-privacy' => $purchasePrivacy,
-            'protect-privacy' => $protectPrivacy,
-        ];
+    public function transfer($query) {
+        $query['domain-name'] = $this->domain;
+//        $query = [
+//            'domain-name' => $this->domain,
+//            'auth-code' => $authCode,
+//            'years' => $years,
+//            'ns' => $ns,
+//            'customer-id' => $customerId,
+//            'reg-contact-id' => $regContactId,
+//            'admin-contact-id' => $adminContactId,
+//            'tech-contact-id' => $techContactId,
+//            'billing-contact-id' => $billingContactId,
+//            'invoice-option' => $invoiceOption,
+//            'purchase-privacy' => $purchasePrivacy,
+//            'protect-privacy' => $protectPrivacy,
+//        ];
 
         return $this->request('domains/transfer.json', $query, 'POST', true);
     }
@@ -368,22 +284,13 @@ class Domain extends Base
      */
     public function renew($years, $date, $invoiceOption, $purchasePrivacy = false)
     {
-        $resp = $this->orderId();
-
-        if (!$resp['status']) {
-            return $resp;
-        }
-
-        $orderId = $resp['response'];
-
         $query = [
-            'order-id'         => $orderId,
             'years'            => $years,
             'exp-date'         => strtotime($date),
             'invoice-option'   => $invoiceOption,
             'purchase-privacy' => $purchasePrivacy
         ];
-        return $this->request('domains/renew.json', $query, 'POST');
+        return $this->requestWithOrderId('domains/renew.json', $query, 'POST');
     }
 
     /**
@@ -416,50 +323,72 @@ class Domain extends Base
      */
     public function addChildNs($cns, $ip)
     {
-        $resp = $this->orderId();
-
-        if (!$resp['status']) {
-            return $resp;
-        }
-
-        $orderId = $resp['response'];
-
         $query = [
-            'order-id' => $orderId,
             'cns' => $cns,
             'ip' => $ip
         ];
-        return $this->request('domains/add-cns.json', $query, 'POST', true);
+        return $this->requestWithOrderId('domains/add-cns.json', $query, 'POST', true);
     }
 
-    public function test($url, $query)
-    {
-        $resp = $this->orderId();
-
-        if (!$resp['status']) {
-            return $resp;
-        }
-
-        $orderId = $resp['response'];
-
-        return $this->request($url, $query, 'POST', true);
-
-    }
-
-    public function modifyChildNs($oldCns, $newCns)
+    public function requestWithOrderId($url, $query, $method, $string = false)
     {
         $resp = $this->orderId();
         if (!$resp['status']) {
             return $resp;
         }
-
         $orderId = $resp['response'];
+        $query['order-id'] = $orderId;
 
+        return $this->request($url, $query, $method, $string);
+    }
+
+    public function modifyChildNsHostName($oldCns, $newCns)
+    {
         $query = [
-            'order-id' => $orderId,
             'old-cns' => $oldCns,
             'new-cns' => $newCns
         ];
-        return $this->request('domains/add-cns.json', $query, 'POST');
+        return $this->requestWithOrderId('domains/modify-cns-name.json', $query, 'POST');
+    }
+
+    /**
+     * @return array
+     */
+    public function getListLockApplied()
+    {
+        return $this->requestWithOrderId('domains/locks.json', [], 'GET');
+    }
+
+    /**
+     * @return array
+     */
+    public function suspend($reason)
+    {
+        $query = [
+            'reason' => $reason
+        ];
+        return $this->requestWithOrderId('orders/suspend.json', $query, 'POST');
+    }
+
+    /**
+     * @return array
+     */
+    public function unSuspend()
+    {
+        return $this->requestWithOrderId('orders/unsuspend.json', [], 'POST');
+    }
+
+    public function suggestName($keyword, $tldOnly = false, $exactMatch = false)
+    {
+        $query = [
+            'keyword' => $keyword,
+            'exact-match' => $exactMatch
+        ];
+
+        if ($tldOnly) {
+            $query['tld-only'] = $tldOnly;
+        }
+
+        return $this->request('domains/v5/suggest-names.json', $query, 'GET');
     }
 }

@@ -50,6 +50,78 @@ logicboxes()->domain('domain-name.tld')->contact()->billing();
 // check for domain
 logicboxes()->domain('hakanersu3')->check(['com','net'])
 // first parameter is array of tlds and second parameter domain suggessions as a boolean. Default is false.
+//
+// get domain order id
+logicboxes()->domain('domain-name.tld')->orderId();
+// set enable theft protection
+logicboxes()->domain('domain-name.tld')->enableTheftProtection();
+// set disable theft protection
+logicboxes()->domain('domain-name.tld')->disableTheftProtection();
+// modify domain nameservers
+logicboxes()->domain('domain-name.tld')->modifyNameServers((array) $ns);
+// delete this domain
+logicboxes()->domain('domain-name.tld')->delete();
+// cancel domain transfer process
+logicboxes()->domain('domain-name.tld')->cancelTransfer();
+// register domain
+logicboxes()->domain('domain-name.tld')->register([
+    'years' => $years,
+    'ns' => (array) $ns,
+    'customer-id' => $customerId,
+    'reg-contact-id' => $regContactId,
+    'admin-contact-id' => $adminContactId,
+    'tech-contact-id' => $techContactId,
+    'billing-contact-id' => $billingContactId,
+    'invoice-option' => 'KeepInvoice',
+    'purchase-privacy' => $purchasePrivacy,
+    'protect-privacy' => $protectPrivacy,
+]);
+
+// Domain transfer
+logicboxes()->domain('domain-name.tld')->transfer([
+    'auth-code' => $authCode,
+    'years' => $years,
+    'ns' => (array)$ns,
+    'customer-id' => $customerId,
+    'reg-contact-id' => $regContactId,
+    'admin-contact-id' => $adminContactId,
+    'tech-contact-id' => $techContactId,
+    'billing-contact-id' => $billingContactId,
+    'invoice-option' => $invoiceOption,
+    'purchase-privacy' => $purchasePrivacy,
+    'protect-privacy' => $protectPrivacy,
+]);
+
+// set Auth Code
+logicboxes()->domain('domain-name.tld')->authCode('authcode');
+
+// modify Auth Code
+logicboxes()->domain('domain-name.tld')->modifyAuthCode('authcode');
+
+// modify Auth Code
+logicboxes()->domain('domain-name.tld')->validateTransferRequest();
+
+// renew domain
+logicboxes()->domain('domain-name.tld')->renew($years, $date, $invoiceOption, true);
+// $purchasePrivacy is default false
+
+// deafult customer nameservers
+logicboxes()->domain()->customerDefaultNameServers($customerId);
+
+// Check premium
+logicboxes()->domain('domain-name.tld')->isDomainPremium();
+
+// add new child nameserver
+logicboxes()->domain('domain-name.tld')->addChildNs('ns1.domain.com', ['0.0.0.0', '0.0.0.1']);
+
+// get lock applied list
+logicboxes()->domain('domain-name.tld')->getListLockApplied();
+
+// set suspend
+logicboxes()->domain('domain-name.tld')->suspend('reason text');
+// set unsuspend
+logicboxes()->domain('domain-name.tld')->unSuspend();
+
 ```
 
 #### Customer
