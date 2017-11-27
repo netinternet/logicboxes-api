@@ -6,13 +6,13 @@
 LogicBoxes laravel package provides most of the LogicBoxes API functionality and compatible company apis like resellerclub.
 
 
-### Installation
+## Installation
 
 ```
 composer require netinternet/logicboxes
 ```
 
-Should be autodiscover by default but you can also register services;
+Package should be autodiscover by default but if you are using older versions of laravel you should change config/app.php with below;
 
 Add this in providers array;
 
@@ -25,31 +25,50 @@ Add this in aliases array;
 'Logicboxes' => Netinternet\Logicboxes\Facades\Logicboxes::class,
 ```
 
-### Usage
-You can access logicboxes instances with facede or helper function.
+## Configuration
+
+Use command below and choose logicboxes option when asked. It will create logicboxes.php in config directory.
+
+```php
+php artisan vendor:publish
+```
+
+You can also create this file manually and paste below content in file;
+
+```php 
+<?php
+    return [
+        'mode' => env('LOGICBOXES_ENV', 'test'),
+        'auth-userid' => env('LOGICBOXES_AUTHID'),
+        'api-key' => env('LOGICBOXES_APIKEY')
+    ];
+```
+
+As you can see by default package uses environment variables. Be sure that use test mode when development mode. We strongly recommend to create [LogicBox Demo Account](http://cp.onlyfordemo.net/servlet/ResellerSignupServlet?&validatenow=false)
+
+## Usage
+
+You can choose to use facade or helper function. We will use helper functions for examples in this documentation.
+
 
 ```php
 use Logicboxes;
 // With Facade
+public function myMethod()
+{
+	return Logicboxes::domain('domain-name.tld')->ns();
+}
 ```
 or with helper
 ```php
 public function myMethod()
 {
-	logicboxes()->
+	return logicboxes()->domain('domain-name.tld')->ns();
 }
 ```
 
-#### Example
 
-```php
-public function getUsersNameServers()
-{
-	return logicboxes()->domain('mydomain.com')->ns();
-}
-```
-
-### Avalaible Methods
+## Avalaible Methods
 
 ```php
 // get domain nameservers.

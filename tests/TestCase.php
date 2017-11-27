@@ -5,6 +5,9 @@ use Netinternet\Logicboxes\Facades\Logicboxes;
 use Netinternet\Logicboxes\LogicboxesServiceProvider;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
+/**
+ * @coversNothing
+ */
 class TestCase extends OrchestraTestCase
 {
     protected function getPackageProviders($app)

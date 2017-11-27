@@ -23,19 +23,6 @@ class DomainTest extends TestCase
         $this->faker = Factory::create();
     }
 
-    private function createDomain()
-    {
-        $this->customer = $this->createCustomer();
-        $this->contact = $this->createContact(['customer-id' => $this->customer['customer-id']]);
-        $this->customer = $this->customer['customer-id'];
-        $this->contact = $this->contact['contact-id'];
-
-        $domain = str_random(8);
-        logicboxes()->domain("{$domain}.com")
-            ->register($this->prepareDomainData($this->customer, $this->contact));
-        $this->domain = "{$domain}.com";
-    }
-
     /** @test */
     public function package_should_domain_register()
     {
@@ -149,19 +136,19 @@ class DomainTest extends TestCase
         $this->assertEquals($response['message'], 'success');
     }
 
-//    /** @test */
-//    public function package_should_modify_child_ns()
-//    {
-//        $this->createDomain();
-//        logicboxes()->domain($this->domain)
-//            ->addChildNs("ns1.{$this->domain}", ['0.0.0.0', '0.0.0.1']);
-//
-//        $response = logicboxes()->domain($this->domain)
-//            ->modifyChildNs("ns1.{$this->domain}", "ns2.{$this->domain}");
-//        dd($response);
-//        $this->assertTrue($response['status']);
-//        $this->assertEquals($response['message'], 'success');
-//    }
+    //    /** @test */
+    //    public function package_should_modify_child_ns()
+    //    {
+    //        $this->createDomain();
+    //        logicboxes()->domain($this->domain)
+    //            ->addChildNs("ns1.{$this->domain}", ['0.0.0.0', '0.0.0.1']);
+    //
+    //        $response = logicboxes()->domain($this->domain)
+    //            ->modifyChildNs("ns1.{$this->domain}", "ns2.{$this->domain}");
+    //        dd($response);
+    //        $this->assertTrue($response['status']);
+    //        $this->assertEquals($response['message'], 'success');
+    //    }
 
     /** @test */
     public function package_should_get_the_list_lock_applied()
@@ -200,5 +187,18 @@ class DomainTest extends TestCase
         $response = logicboxes()->domain()->suggestName($this->faker->firstNameMale);
         $this->assertTrue($response['status']);
         $this->assertEquals($response['message'], 'success');
+    }
+
+    private function createDomain()
+    {
+        $this->customer = $this->createCustomer();
+        $this->contact = $this->createContact(['customer-id' => $this->customer['customer-id']]);
+        $this->customer = $this->customer['customer-id'];
+        $this->contact = $this->contact['contact-id'];
+
+        $domain = str_random(8);
+        logicboxes()->domain("{$domain}.com")
+            ->register($this->prepareDomainData($this->customer, $this->contact));
+        $this->domain = "{$domain}.com";
     }
 }

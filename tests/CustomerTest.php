@@ -18,7 +18,6 @@ class CustomerTest extends TestCase
         parent::setUp();
 
         $this->faker = Factory::create();
-
     }
 
     /** @test */

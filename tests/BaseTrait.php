@@ -16,7 +16,7 @@ trait BaseTrait
             'country' => $this->faker->countryCode,
             'zipcode' => $this->faker->postcode,
             'phone-cc' => 90,
-            'phone' => 5053123498,
+            'phone' => 5555555555,
             'lang-pref' => 'en'
         ];
     }
@@ -33,7 +33,7 @@ trait BaseTrait
             'country' => $this->faker->countryCode,
             'zipcode' => $this->faker->postcode,
             'phone-cc' => 90,
-            'phone' => 5053123498,
+            'phone' => 5555555555,
             'lang-pref' => 'en'
         ], $attributes);
 
@@ -47,7 +47,7 @@ trait BaseTrait
     public function createContact($attributes = [])
     {
         $details = array_merge([
-            'name' =>  $this->faker->name,
+            'name' => $this->faker->name,
             'company' => $this->faker->company,
             'email' => $this->faker->email,
             'address-line-1' => $this->faker->streetAddress,
@@ -61,6 +61,7 @@ trait BaseTrait
 
         $customer = logicboxes()->contact()->add($details);
         $details['contact-id'] = $customer['response'];
+
         return $details;
     }
 
@@ -78,6 +79,7 @@ trait BaseTrait
             'purchase-privacy' => true,
             'protect-privacy' => true,
         ];
+
         return $details;
     }
 
