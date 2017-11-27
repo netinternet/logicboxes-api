@@ -139,14 +139,14 @@ logicboxes()->customer()->create([
 	'country' => $this->faker->countryCode,
 	'zipcode' => $this->faker->postcode,
 	'phone-cc' => 90,
-	'phone' => 5053123498,
+	'phone' => 5555555555,
 	'lang-pref' => 'en'
 ]);
 
 // getting a customer by email or id
-logicboxes()->customer()->get('app@barisesen.com')
+logicboxes()->customer()->get('app@yourdomain.com')
 //or by id
 logicboxes()->customer()->get(17939294)
 // Changing customers password
-logicboxes()->customer()->get('hakanersu@gmail.com','myNew8CharPassword')
+logicboxes()->customer()->get('app@yourdomain.com','myNew8CharPassword')
 ```
