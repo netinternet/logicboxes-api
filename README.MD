@@ -1,3 +1,22 @@
+### Installation
+
+```
+composer require netinternet/logicboxes
+```
+
+Should be autodiscover by default but you can also register services;
+
+Add this in providers array;
+
+```js
+Netinternet\Logicboxes\LogicboxesServiceProvider::class,
+```
+
+Add this in providers array;
+```js
+'Logicboxes' => Netinternet\Logicboxes\Facades\Logicboxes::class,
+```
+
 ### Usage
 You can access logicboxes instances with facede or helper function.
 
