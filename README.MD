@@ -3,7 +3,7 @@
 
 # Logicboxes Laravel Package
 
-Logicboxes laravel package provides most of the logicboxes api functionality and compatible companies like resellerclub.
+LogicBoxes laravel package provides most of the LogicBoxes API functionality and compatible company apis like resellerclub.
 
 
 ### Installation
