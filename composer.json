@@ -1,0 +1,48 @@
+{
+    "name": "netinternet/logicboxes",
+    "description": "Laravel logicboxes package",
+    "keywords": [
+        "laravel",
+        "logicboxes",
+        "domaon"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Hakan ERSU",
+            "email": "hakanersu@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "^5.0,<5.6",
+        "illuminate/console": "^5.0,<5.6",
+        "illuminate/filesystem": "^5.0,<5.6",
+        "symfony/class-loader": "^2.3|^3.0"
+    },
+    "require-dev": {
+        "illuminate/config": "^5.0,<5.6",
+        "illuminate/view": "^5.0,<5.6",
+        "fzaninotto/faker": "~1.4",
+        "phpunit/phpunit": "~6.0",
+        "guzzlehttp/guzzle": "~6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Netinternet\\Logicboxes\\": "src"
+        },
+        "files" : [
+            "src/Helpers/functions.php"
+        ]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        },
+        "laravel": {
+            "providers": [
+                "Netinternet\\Logicboxes\\LogicboxesServiceProvider"
+            ]
+        }
+    }
+}

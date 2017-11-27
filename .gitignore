@@ -1,0 +1,13 @@
+/vendor
+/node_modules
+/public/storage
+/public/panel
+Homestead.yaml
+Homestead.json
+.env
+.env_backup
+.idea
+.DS_Store
+.php_cs.cache
+storage/debugbar
+npm-debug.log
