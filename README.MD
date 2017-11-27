@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 [![Total Downloads](https://poser.pugx.org/netinternet/logicboxes/downloads)](https://packagist.org/packages/netinternet/logicboxes)
 [![Latest Stable Version](https://poser.pugx.org/netinternet/logicboxes/v/stable)](https://packagist.org/packages/netinternet/logicboxes)
 
@@ -22,6 +23,26 @@ OR run the following command directly.
 $ composer require netinternet/logicboxes
 ```
 
+=======
+### Installation
+
+```
+composer require netinternet/logicboxes
+```
+
+Should be autodiscover by default but you can also register services;
+
+Add this in providers array;
+
+```js
+Netinternet\Logicboxes\LogicboxesServiceProvider::class,
+```
+
+Add this in providers array;
+```js
+'Logicboxes' => Netinternet\Logicboxes\Facades\Logicboxes::class,
+```
+>>>>>>> a00da058068b8b9ec070d2ab9134af0ba2d17d34
 
 ### Usage
 You can access logicboxes instances with facede or helper function.
