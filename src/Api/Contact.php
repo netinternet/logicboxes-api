@@ -5,20 +5,6 @@ namespace Netinternet\Logicboxes\Api;
 class Contact extends Base
 {
     /**
-     * example $query array
-     * $query = [
-        'name' => 'Baris Esen',
-        'company' => 'Netinternet',
-        'email' => 'baris.esen@ni.net.tr',
-        'address-line-1' => 'Pamukkale Teknoloji Gelistirme Bolgesi,
-        'city' => 'Denizli',
-        'country' => 'TR',
-        'zipcode' => '20070',
-        'phone-cc' => '90',
-        'phone' => '5555555555',
-        'customer-id' => 12345678,
-        'type' => 'Contact'
-      ]
      *
      * @param $query
      * @return array
@@ -79,15 +65,6 @@ class Contact extends Base
     }
 
     /**
-     * $query = [
-     * 'customer-id' => 0,
-     * 'type' => ['Contact'],
-     * 'reg-contact-id' => 0,
-     * 'admin-contact-id' => 0,
-     * 'tech-contact-id' => 0,
-     * 'billing-contact-id' => 0
-     * ]
-     *
      * @param $query
      * @return array
      */
