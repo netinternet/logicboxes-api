@@ -3,9 +3,9 @@ namespace Netinternet\Logicboxes\Test;
 
 use Netinternet\Logicboxes\Facades\Logicboxes;
 use Netinternet\Logicboxes\LogicboxesServiceProvider;
-use PHPUnit\Framework\TestCase as BaseTestCase;
+use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
-class TestCase extends BaseTestCase
+class TestCase extends OrchestraTestCase
 {
     protected function getPackageProviders($app)
     {
@@ -17,5 +17,11 @@ class TestCase extends BaseTestCase
         return [
             'Logicboxes' => Logicboxes::class,
         ];
+    }
+    protected function getEnvironmentSetUp($app)
+    {
+        $config = parse_ini_file("config.ini");
+        $app['config']->set('logicboxes.api-key', $config['key']);
+        $app['config']->set('logicboxes.auth-userid', $config['userId']);
     }
 }

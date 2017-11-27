@@ -11,3 +11,4 @@ Homestead.json
 .php_cs.cache
 storage/debugbar
 npm-debug.log
+/tests/config.ini
