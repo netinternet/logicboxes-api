@@ -41,7 +41,7 @@ class LogicboxesServiceProvider extends ServiceProvider
     {
         $configPath = __DIR__.'/../config/logicboxes.php';
 
-        $this->publishes([$configPath => config_path('logicboxes.php')], 'config');
+        $this->publishes([$configPath => config_path('logicboxes.php')], 'Logicboxes');
         // Merge config files...
         $this->mergeConfigFrom($configPath, 'logicboxes');
     }
