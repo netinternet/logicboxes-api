@@ -126,7 +126,7 @@ logicboxes()->domain('domain-name.tld')->unSuspend();
 
 #### Customer
 
-```
+```php
 // Creating a customer
 logicboxes()->customer()->create([
 	'username' =>  $this->faker->email,
@@ -147,6 +147,6 @@ logicboxes()->customer()->create([
 logicboxes()->customer()->get('app@barisesen.com')
 //or by id
 logicboxes()->customer()->get(17939294)
-// Changing customers password 
+// Changing customers password
 logicboxes()->customer()->get('hakanersu@gmail.com','myNew8CharPassword')
 ```
