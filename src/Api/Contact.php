@@ -20,11 +20,7 @@ class Contact extends Base
      */
     public function getDetail($contactId)
     {
-        $query = [
-            'contact-id' => $contactId,
-        ];
-
-        return $this->request('contacts/details.json', $query, 'GET');
+        return $this->request('contacts/details.json', ['contact-id' => $contactId], 'GET');
     }
 
     /**
@@ -34,12 +30,10 @@ class Contact extends Base
      */
     public function getContactWithCustomerId($customerId, $type = ['Contact'])
     {
-        $query = [
+        return $this->request('contacts/default.json', [
             'customer-id' => $customerId,
             'type' => $type
-        ];
-
-        return $this->request('contacts/default.json', $query, 'POST', true);
+        ], 'POST', true);
     }
 
     /**
@@ -58,12 +52,10 @@ class Contact extends Base
      */
     public function getDefaultDetails($customerId, $type = ['Contact'])
     {
-        $query = [
+        return $this->request('contacts/default.json', [
             'customer-id' => $customerId,
             'type' => $type
-        ];
-
-        return $this->request('contacts/default.json', $query, 'POST', true);
+        ], 'POST', true);
     }
 
     /**
