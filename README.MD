@@ -1,29 +1,7 @@
-<<<<<<< HEAD
 [![Total Downloads](https://poser.pugx.org/netinternet/logicboxes/downloads)](https://packagist.org/packages/netinternet/logicboxes)
 [![Latest Stable Version](https://poser.pugx.org/netinternet/logicboxes/v/stable)](https://packagist.org/packages/netinternet/logicboxes)
 
 
-## Installation
-Composer json file:
-```json
-{
-    "require": {
-        "netinternet/logicboxes": "^0.0.1"
-    }
-}
-```
-After run the install command.
-```
-$ composer install
-```
-
-OR run the following command directly.
-
-```
-$ composer require netinternet/logicboxes
-```
-
-=======
 ### Installation
 
 ```
@@ -42,7 +20,6 @@ Add this in providers array;
 ```js
 'Logicboxes' => Netinternet\Logicboxes\Facades\Logicboxes::class,
 ```
->>>>>>> a00da058068b8b9ec070d2ab9134af0ba2d17d34
 
 ### Usage
 You can access logicboxes instances with facede or helper function.
