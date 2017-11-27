@@ -20,7 +20,7 @@ Add this in providers array;
 Netinternet\Logicboxes\LogicboxesServiceProvider::class,
 ```
 
-Add this in providers array;
+Add this in aliases array;
 ```js
 'Logicboxes' => Netinternet\Logicboxes\Facades\Logicboxes::class,
 ```
