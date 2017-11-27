@@ -42,7 +42,10 @@
         "laravel": {
             "providers": [
                 "Netinternet\\Logicboxes\\LogicboxesServiceProvider"
-            ]
+            ],
+            "aliases": {
+                "Logicboxes": "Netinternet\\Logicboxes\\Facades\\Logicboxes"
+            }
         }
     }
 }

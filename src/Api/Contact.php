@@ -23,6 +23,7 @@ class Contact extends Base
         $query = [
             'contact-id' => $contactId,
         ];
+
         return $this->request('contacts/details.json', $query, 'GET');
     }
 
@@ -37,6 +38,7 @@ class Contact extends Base
             'customer-id' => $customerId,
             'type' => $type
         ];
+
         return $this->request('contacts/default.json', $query, 'POST', true);
     }
 
@@ -82,6 +84,7 @@ class Contact extends Base
         $query = [
             'contact-id' => $contactId
         ];
+
         return $this->request('contacts/modDefault.json', $query, 'POST');
     }
 }
