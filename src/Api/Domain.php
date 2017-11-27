@@ -177,19 +177,6 @@ class Domain extends Base
      */
     public function register($query)
     {
-//        $query = [
-//            'domain-name' => $this->domain,
-//            'years' => $years,
-//            'ns' => $ns,
-//            'customer-id' => $customerId,
-//            'reg-contact-id' => $regContactId,
-//            'admin-contact-id' => $adminContactId,
-//            'tech-contact-id' => $techContactId,
-//            'billing-contact-id' => $billingContactId,
-//            'invoice-option' => $invoiceOption,
-//            'purchase-privacy' => $purchasePrivacy,
-//            'protect-privacy' => $protectPrivacy,
-//        ];
         $query['domain-name'] = $this->domain;
 
         return $this->request('domains/register.json', $query, 'POST', true);
@@ -202,21 +189,6 @@ class Domain extends Base
      */
     public function transfer($query) {
         $query['domain-name'] = $this->domain;
-//        $query = [
-//            'domain-name' => $this->domain,
-//            'auth-code' => $authCode,
-//            'years' => $years,
-//            'ns' => $ns,
-//            'customer-id' => $customerId,
-//            'reg-contact-id' => $regContactId,
-//            'admin-contact-id' => $adminContactId,
-//            'tech-contact-id' => $techContactId,
-//            'billing-contact-id' => $billingContactId,
-//            'invoice-option' => $invoiceOption,
-//            'purchase-privacy' => $purchasePrivacy,
-//            'protect-privacy' => $protectPrivacy,
-//        ];
-
         return $this->request('domains/transfer.json', $query, 'POST', true);
     }
 
