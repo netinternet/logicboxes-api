@@ -12,3 +12,4 @@ Homestead.json
 storage/debugbar
 npm-debug.log
 /tests/config.ini
+.vcode

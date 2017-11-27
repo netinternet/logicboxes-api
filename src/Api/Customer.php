@@ -27,7 +27,7 @@ class Customer extends Base
         if (filter_var($customerId, FILTER_VALIDATE_EMAIL)) {
             return [
                'status' => false,
-               'message' => 'You must provide customer id not an id.',
+               'message' => 'You must provide customer id not an email.',
                'response' => null
            ];
         }
