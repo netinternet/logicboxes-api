@@ -1,3 +1,28 @@
+[![Total Downloads](https://poser.pugx.org/netinternet/logicboxes/downloads)](https://packagist.org/packages/netinternet/logicboxes)
+[![Latest Stable Version](https://poser.pugx.org/netinternet/logicboxes/v/stable)](https://packagist.org/packages/netinternet/logicboxes)
+
+
+## Installation
+Composer json file:
+```json
+{
+    "require": {
+        "netinternet/logicboxes": "^0.0.1"
+    }
+}
+```
+After run the install command.
+```
+$ composer install
+```
+
+OR run the following command directly.
+
+```
+$ composer require netinternet/logicboxes
+```
+
+
 ### Usage
 You can access logicboxes instances with facede or helper function.
 
@@ -150,3 +175,11 @@ logicboxes()->customer()->get(17939294)
 // Changing customers password
 logicboxes()->customer()->get('app@yourdomain.com','myNew8CharPassword')
 ```
+
+## Contributing
+
+1. Fork it ( https://github.com/netinternet/logicboxes-api/ )
+2. Create your feature branch (git checkout -b my-new-feature)
+3. Commit your changes (git commit -am 'Add some feature')
+4. Push to the branch (git push origin my-new-feature)
+5. Create a new Pull Request
