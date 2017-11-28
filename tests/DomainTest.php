@@ -189,6 +189,26 @@ class DomainTest extends TestCase
         $this->assertEquals($response['message'], 'success');
     }
 
+    /** @test */
+    public function package_should_modify_domain_contacts()
+    {
+        $customer = $this->createCustomer();
+        $contact = $this->createContact(['customer-id' => $customer['customer-id']]);
+        $domain = str_random(8);
+        logicboxes()->domain("{$domain}.com")
+            ->register($this->prepareDomainData($customer['customer-id'], $contact['contact-id']));
+
+        $contact2 = $this->createContact(['customer-id' => $customer['customer-id']]);
+        $response = logicboxes()->domain("{$domain}.com")->modifyContact([
+            'reg-contact-id' => $contact2['contact-id'],
+            'admin-contact-id' => $contact2['contact-id'],
+            'tech-contact-id' => $contact2['contact-id'],
+            'billing-contact-id' => $contact2['contact-id']
+        ]);
+        $this->assertTrue($response['status']);
+        $this->assertEquals($response['message'], 'success');
+    }
+
     private function createDomain()
     {
         $this->customer = $this->createCustomer();
