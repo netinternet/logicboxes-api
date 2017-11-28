@@ -348,6 +348,15 @@ class Domain extends Base
         return $this->request('domains/v5/suggest-names.json', $query, 'GET');
     }
 
+    /**
+     * @param $query
+     * @return array
+     */
+    public function modifyContact($query)
+    {
+        return $this->requestWithOrderId('domains/modify-contact.json', $query, 'POST');
+    }
+
     private function domain($option)
     {
         return $this->request($this->url, [
