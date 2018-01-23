@@ -23,7 +23,7 @@ class CustomerTest extends TestCase
     /** @test */
     public function logicboxes_create_customer()
     {
-        $response = logicboxes()->customer()->create($customerDetails());
+        $response = logicboxes()->customer()->create($this->customerDetails());
         $this->assertTrue($response['status']);
         $this->assertEquals($response['message'], 'success');
     }
