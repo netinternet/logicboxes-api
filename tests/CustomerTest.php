@@ -23,7 +23,7 @@ class CustomerTest extends TestCase
     /** @test */
     public function logicboxes_create_customer()
     {
-        $response = logicboxes()->customer()->create($this->customerDetails());
+        $response = logicboxes()->customer()->create($customerDetails());
         $this->assertTrue($response['status']);
         $this->assertEquals($response['message'], 'success');
     }
@@ -59,5 +59,26 @@ class CustomerTest extends TestCase
         $response = logicboxes()->customer()->delete($customer['customer-id']);
         $this->assertTrue($response['status']);
         $this->assertTrue($response['response']);
+    }
+
+    /** @test */
+    public function logicboxes_change_customer()
+    {
+        $customer = $this->createCustomer();
+        $contact = $this->createContact(['customer-id' => $customer['customer-id']]);
+        $customer = $customer['customer-id'];
+        $contact = $contact['contact-id'];
+
+        $domain = strtolower(str_random(8));
+        logicboxes()->domain("{$domain}.com")
+            ->register($this->prepareDomainData($customer, $contact));
+        // create 2. Customer
+        $customer2 = $this->createCustomer();
+        $customer2Id = $customer2['customer-id'];
+
+        $response = logicboxes()->customer()->moveProduct("{$domain}.com", $customer, $customer2Id, $contact);
+
+        $this->assertTrue($response['status']);
+        $this->assertEquals($response['message'], 'success');
     }
 }

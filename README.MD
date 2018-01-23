@@ -195,6 +195,8 @@ logicboxes()->customer()->get('app@yourdomain.com')
 logicboxes()->customer()->get(17939294)
 // Changing customers password
 logicboxes()->customer()->get('app@yourdomain.com','myNew8CharPassword')
+// Change customer
+logicboxes()->customer()->moveProduct("app@yourdomain.com", 'old-customer-id', 'new-customer-id, 'old-contact');
 ```
 
 ## Test Configuration

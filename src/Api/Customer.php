@@ -96,7 +96,15 @@ class Customer extends Base
             'customer-id' => $customer
         ]);
     }
-
+    public function moveProduct($domain, $customerId, $newCustomerId, $contact)
+    {
+        return $this->request('products/move.json', [
+            'domain-name' => $domain,
+            'existing-customer-id' => $customerId,
+            'new-customer-id' => $newCustomerId,
+            'default-contact' => $contact
+        ], 'POST');
+    }
     /**
      * Get customers id
      *
