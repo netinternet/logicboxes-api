@@ -170,7 +170,7 @@ class Domain extends Base
     {
         $query['domain-name'] = $this->domain;
 
-        return $this->request('domains/register.json', $query, 'POST');
+        return $this->request('domains/register.json', $query, 'POST', true);
     }
 
     /**
