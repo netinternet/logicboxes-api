@@ -49,7 +49,7 @@ class Base
                 $base = (string)$this->client()->getConfig()['base_uri'];
                 $fullUrl = $base.$url."?".$query;
                 $client = new Client();
-                $response = $client->get($fullUrl);
+                $response = $client->post($fullUrl);
             }
 
             return [
