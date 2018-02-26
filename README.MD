@@ -94,9 +94,11 @@ logicboxes()->domain('domain-name.tld')->contact()->tech();
 // get domains billing contact details
 logicboxes()->domain('domain-name.tld')->contact()->billing();
 // check for domain
-logicboxes()->domain('hakanersu3')->check(['com','net'])
+logicboxes()->domain('domain-name')->check(['com','net'])
 // first parameter is array of tlds and second parameter domain suggessions as a boolean. Default is false.
-//
+// and you can also set  domain index as third parameter for getting immediate domain status without result
+//object ```logicboxes()->domain('domain-name')->check(['com','net'],false,1)```
+
 // get domain order id
 logicboxes()->domain('domain-name.tld')->orderId();
 // set enable theft protection
