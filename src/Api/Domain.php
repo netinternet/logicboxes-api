@@ -92,10 +92,11 @@ class Domain extends Base
      *
      * @param array $tlds
      * @param bool  $suggest
+     * @param mixed $stausIndex
      *
      * @return array
      */
-    public function check($tlds = ['com'], $suggest = false)
+    public function check($tlds = ['com'], $suggest = false, $stausIndex = 0)
     {
         $query = [
             'domain-name' => $this->domain,
@@ -103,7 +104,17 @@ class Domain extends Base
             'tlds' => $tlds
         ];
 
-        return $this->request('domains/available.json', $query, 'GET', true);
+        $result = $this->request('domains/available.json', $query, 'GET', true);
+
+        try {
+            $status = $result['response']->{$this->domain.".".$tlds[$stausIndex]}->status;
+        } catch (\Exception $e) {
+            $status = 'unknown';
+        }
+        
+        $result['domain-status'] = $status;
+
+        return $result;
     }
     /**
      * Get only orderId
