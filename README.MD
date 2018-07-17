@@ -149,8 +149,8 @@ logicboxes()->domain('domain-name.tld')->modifyAuthCode('authcode');
 // modify Auth Code
 logicboxes()->domain('domain-name.tld')->validateTransferRequest();
 
-// renew domain
-logicboxes()->domain('domain-name.tld')->renew($years, $invoiceOption, true);
+// renew domain ($date => epochtime)
+logicboxes()->domain('domain-name.tld')->renew($years, $date, $invoiceOption, true);
 // $purchasePrivacy is default false
 
 // deafult customer nameservers

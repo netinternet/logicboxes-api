@@ -249,13 +249,11 @@ class Domain extends Base
      *
      * @return array
      */
-    public function renew($years, $invoiceOption, $purchasePrivacy = false)
+    public function renew($years, $date, $invoiceOption, $purchasePrivacy = false)
     {
-        $end_time = $this->details()['response']->endtime;
-
         $query = [
             'years' => $years,
-            'exp-date' => $end_time,
+            'exp-date' => $date,
             'invoice-option' => $invoiceOption,
             'purchase-privacy' => $purchasePrivacy,
         ];
