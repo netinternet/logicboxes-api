@@ -101,30 +101,31 @@ class Domain extends Base
         $query = [
             'domain-name' => $this->domain,
             'suggest-alternative' => json_encode($suggest),
-            'tlds' => $tlds
+            'tlds' => $tlds,
         ];
 
         $result = $this->request('domains/available.json', $query, 'GET', true);
 
         try {
-            $status = $result['response']->{$this->domain.".".$tlds[$stausIndex]}->status;
+            $status = $result['response']->{$this->domain.'.'.$tlds[$stausIndex]}->status;
         } catch (\Exception $e) {
             $status = 'unknown';
         }
-        
+
         $result['domain-status'] = $status;
 
         return $result;
     }
+
     /**
-     * Get only orderId
+     * Get only orderId.
      *
      * @return array
      */
     public function orderId()
     {
         return $this->request('domains/orderid.json', [
-            'domain-name' => $this->domain
+            'domain-name' => $this->domain,
         ], 'GET');
     }
 
@@ -146,12 +147,13 @@ class Domain extends Base
 
     /**
      * @param array $ns
+     *
      * @return array
      */
     public function modifyNameServers(array $ns)
     {
         $query = [
-            'ns' => $ns
+            'ns' => $ns,
         ];
 
         return $this->requestWithOrderId('domains/modify-ns.json', $query, 'POST', true);
@@ -175,6 +177,7 @@ class Domain extends Base
 
     /**
      * @param $query
+     *
      * @return array
      */
     public function register($query)
@@ -186,6 +189,7 @@ class Domain extends Base
 
     /**
      * @param $query
+     *
      * @return array
      */
     public function transfer($query)
@@ -197,12 +201,13 @@ class Domain extends Base
 
     /**
      * @param $authCode
+     *
      * @return array
      */
     public function authCode($authCode)
     {
         $query = $this->prepareAuthCode($authCode);
-        if (!$authCode === $query['auth-code']) {
+        if (! $authCode === $query['auth-code']) {
             return $query;
         }
 
@@ -211,12 +216,13 @@ class Domain extends Base
 
     /**
      * @param $authCode
+     *
      * @return array
      */
     public function modifyAuthCode($authCode)
     {
         $query = $this->prepareAuthCode($authCode);
-        if (!$authCode === $query['auth-code']) {
+        if (! $authCode === $query['auth-code']) {
             return $query;
         }
 
@@ -240,15 +246,18 @@ class Domain extends Base
      * @param $date
      * @param $invoiceOption
      * @param bool $purchasePrivacy
+     *
      * @return array
      */
-    public function renew($years, $date, $invoiceOption, $purchasePrivacy = false)
+    public function renew($years, $invoiceOption, $purchasePrivacy = false)
     {
+        $end_time = $this->details()['response']->endtime;
+
         $query = [
             'years' => $years,
-            'exp-date' => strtotime($date),
+            'exp-date' => $end_time,
             'invoice-option' => $invoiceOption,
-            'purchase-privacy' => $purchasePrivacy
+            'purchase-privacy' => $purchasePrivacy,
         ];
 
         return $this->requestWithOrderId('domains/renew.json', $query, 'POST');
@@ -256,12 +265,13 @@ class Domain extends Base
 
     /**
      * @param $customerId
+     *
      * @return array
      */
     public function customerDefaultNameServers($customerId)
     {
         $query = [
-            'customer-id' => $customerId
+            'customer-id' => $customerId,
         ];
 
         return $this->request('domains/customer-default-ns.json', $query, 'GET');
@@ -273,7 +283,7 @@ class Domain extends Base
     public function isDomainPremium()
     {
         $query = [
-            'domain-name' => $this->domain
+            'domain-name' => $this->domain,
         ];
 
         return $this->request('domains/premium-check.json', $query, 'GET');
@@ -282,13 +292,14 @@ class Domain extends Base
     /**
      * @param $cns
      * @param $ip
+     *
      * @return array
      */
     public function addChildNs($cns, $ip)
     {
         $query = [
             'cns' => $cns,
-            'ip' => $ip
+            'ip' => $ip,
         ];
 
         return $this->requestWithOrderId('domains/add-cns.json', $query, 'POST', true);
@@ -297,7 +308,7 @@ class Domain extends Base
     public function requestWithOrderId($url, $query, $method, $string = false)
     {
         $resp = $this->orderId();
-        if (!$resp['status']) {
+        if (! $resp['status']) {
             return $resp;
         }
         $orderId = $resp['response'];
@@ -310,7 +321,7 @@ class Domain extends Base
     {
         $query = [
             'old-cns' => $oldCns,
-            'new-cns' => $newCns
+            'new-cns' => $newCns,
         ];
 
         return $this->requestWithOrderId('domains/modify-cns-name.json', $query, 'POST');
@@ -326,12 +337,13 @@ class Domain extends Base
 
     /**
      * @param mixed $reason
+     *
      * @return array
      */
     public function suspend($reason)
     {
         $query = [
-            'reason' => $reason
+            'reason' => $reason,
         ];
 
         return $this->requestWithOrderId('orders/suspend.json', $query, 'POST');
@@ -349,7 +361,7 @@ class Domain extends Base
     {
         $query = [
             'keyword' => $keyword,
-            'exact-match' => $exactMatch
+            'exact-match' => $exactMatch,
         ];
 
         if ($tldOnly) {
@@ -361,6 +373,7 @@ class Domain extends Base
 
     /**
      * @param $query
+     *
      * @return array
      */
     public function modifyContact($query)
@@ -372,18 +385,19 @@ class Domain extends Base
     {
         return $this->request($this->url, [
             'domain-name' => $this->domain,
-            'options' => $option
+            'options' => $option,
         ]);
     }
 
     /**
      * @param $authCode
+     *
      * @return array
      */
     private function prepareAuthCode($authCode)
     {
         $resp = $this->orderId();
-        if (!$resp['status']) {
+        if (! $resp['status']) {
             return $resp;
         }
 
