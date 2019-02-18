@@ -17,14 +17,14 @@ class Reseller extends Base
         ], 'GET', false);
     }
 
-    public function addFunds($id, $amount, $description, $transactionType = 'credit', $transactionKey = false, $updateTotal = true)
+    public function addFunds($id, $amount, $description, $transactionType = 'receipt', $transactionKey = false, $updateTotal = true)
     {
         return $this->request('billing/add-reseller-fund.json', [
             'reseller-id' => $id,
             'amount' => $amount,
             'description' => $description,
             'transaction-type' => $transactionType,
-            'transaction-key' => $transactionKey ?? md5(uniqid($id, true)),
+            'transaction-key' => $transactionKey ?? md5(uniqid($id.time(), true)),
             'update-total-receipt' => $updateTotal,
         ], 'POST', false);
     }
