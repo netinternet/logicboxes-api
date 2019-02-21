@@ -34,7 +34,7 @@ class Base
         return 'https://httpapi.com/api/';
     }
 
-    protected function request($url, $query = [], $method = 'GET', $string = false)
+    protected function request($url, $query = [], $method = 'GET', $string = false, $isArray = false)
     {
         try {
             if (!$string) {
@@ -54,7 +54,7 @@ class Base
 
             return [
                 'status' => true,
-                'response' => json_decode((string) $response->getBody()),
+                'response' => json_decode((string) $response->getBody(), $isArray),
                 'message' => 'success'
             ];
         } catch (ServerException $e) {
