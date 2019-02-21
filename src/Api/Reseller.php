@@ -35,4 +35,11 @@ class Reseller extends Base
             'reseller-id' => $id
         ], 'GET', false);
     }
+
+    public function getPricing($id)
+    {
+        return $this->request('products/reseller-price.json', [
+            'reseller-id' => $id
+        ], 'GET', false);
+    }
 }
