@@ -47,4 +47,9 @@ class Reseller extends Base
     {
         return $this->request('products/customer-price.json', [], 'GET', false, true);
     }
+
+    public function getCostPricing($id)
+    {
+        return $this->request('products/customer-price.json', [], 'GET', false, true);
+    }
 }
