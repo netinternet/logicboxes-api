@@ -40,6 +40,6 @@ class Reseller extends Base
     {
         return $this->request('products/reseller-price.json', [
             'reseller-id' => $id
-        ], 'GET', false);
+        ], 'GET', false, true);
     }
 }
