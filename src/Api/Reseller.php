@@ -28,4 +28,11 @@ class Reseller extends Base
             'update-total-receipt' => $updateTotal,
         ], 'POST', false);
     }
+
+    public function getBalance($id)
+    {
+        return $this->request('billing/reseller-balance.json', [
+            'reseller-id' => $id
+        ], 'GET', false);
+    }
 }
