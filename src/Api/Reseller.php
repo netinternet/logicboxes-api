@@ -50,6 +50,6 @@ class Reseller extends Base
 
     public function getCostPricing($id)
     {
-        return $this->request('products/customer-price.json', [], 'GET', false, true);
+        return $this->request('products/reseller-cost-price.json', [], 'GET', false, true);
     }
 }
