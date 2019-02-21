@@ -32,14 +32,19 @@ class Reseller extends Base
     public function getBalance($id)
     {
         return $this->request('billing/reseller-balance.json', [
-            'reseller-id' => $id
+            'reseller-id' => $id,
         ], 'GET', false);
     }
 
     public function getPricing($id)
     {
         return $this->request('products/reseller-price.json', [
-            'reseller-id' => $id
+            'reseller-id' => $id,
         ], 'GET', false, true);
+    }
+
+    public function getCustomerPricing($id)
+    {
+        return $this->request('products/customer-price.json', [], 'GET', false, true);
     }
 }
