@@ -369,6 +369,15 @@ class Domain extends Base
         return $this->request('domains/v5/suggest-names.json', $query, 'GET');
     }
 
+    public function isPremium()
+    {
+        $query = [
+            'domain-name' => $this->domain,
+        ];
+
+        return $this->request('domains/premium-check.json', $query, 'GET');
+    }
+
     /**
      * @param $query
      *
