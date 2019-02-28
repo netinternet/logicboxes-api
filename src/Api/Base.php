@@ -16,7 +16,7 @@ class Base
             'query' => [
                 'auth-userid' => config('logicboxes.auth-userid'),
                 'api-key' => config('logicboxes.api-key'),
-            ]
+            ],
         ]);
     }
 
@@ -37,25 +37,26 @@ class Base
     protected function request($url, $query = [], $method = 'GET', $string = false, $isArray = false)
     {
         try {
-            if (!$string) {
+            if (! $string) {
                 $response = $this->client()->request($method, $url, [
-                    'query' => array_merge($this->client()->getConfig('query'), $query)
+                    'query' => array_merge($this->client()->getConfig('query'), $query),
                 ]);
             } else {
                 $query = \GuzzleHttp\Psr7\build_query($query, PHP_QUERY_RFC1738);
                 foreach ($this->client()->getConfig('query') as $k => $v) {
                     $query .= "&{$k}={$v}";
                 }
-                $base = (string)$this->client()->getConfig()['base_uri'];
-                $fullUrl = $base.$url."?".$query;
+                $base = (string) $this->client()->getConfig()['base_uri'];
+                $fullUrl = $base.$url.'?'.$query;
                 $client = new Client();
-                $response = $client->post($fullUrl);
+
+                $response = $method === 'GET' ? $client->get($fullUrl) : $client->post($fullUrl);
             }
 
             return [
                 'status' => true,
                 'response' => json_decode((string) $response->getBody(), $isArray),
-                'message' => 'success'
+                'message' => 'success',
             ];
         } catch (ServerException $e) {
             $re = '/"message":"(.*?)[\",(]/';
@@ -68,7 +69,7 @@ class Base
             return [
                 'status' => false,
                 'response' => null,
-                'message' => $match
+                'message' => $match,
             ];
         }
     }
